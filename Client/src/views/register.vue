@@ -1,30 +1,29 @@
 <template>
-  <div class="register-container">
-    <h2>Register</h2>
-    <form @submit.prevent="submitForm">
-      <div class="input-field">
-        <label for="name">Ime</label>
-        <input type="text" id="name" v-model="name" />
-      </div>
-      <div class="input-field">
-        <label for="surname">Prezime</label>
-        <input type="text" id="surname" v-model="surname" />
-      </div>
-      <div class="input-field">
-        <label for="email">Email</label>
-        <input type="email" id="email" v-model="email" />
-      </div>
-      <div class="input-field">
-        <label for="username">Korisničko ime</label>
-        <input type="text" id="username" v-model="username" />
-      </div>
-      <div class="input-field">
-        <label for="password">Lozinka</label>
-        <input type="password" id="password" v-model="password" />
-      </div>
-      <button type="submit">Registriraj se</button>
-    </form>
-  </div>
+  <v-container fluid>
+    <v-row justify="center">
+      <v-col cols="12" sm="8" md="6">
+        <v-card class="pa-8" outlined>
+          <v-card-title class="text-h6">Register</v-card-title>
+          <v-form @submit.prevent="submitForm">
+            <v-text-field v-model="name" label="Ime" dense outlined></v-text-field>
+            <v-text-field v-model="surname" label="Prezime" dense outlined></v-text-field>
+            <v-text-field v-model="email" label="Email" dense :rules="[rules.required, rules.email]" outlined></v-text-field>
+            <v-text-field v-model="username" label="Korisničko ime" dense outlined></v-text-field>
+            <v-text-field
+              v-model="password"
+              label="Lozinka"
+              dense
+              :append-icon="showIcon ? 'mdi-eye' : 'mdi-eye-off'"
+              :rules="[rules.required, rules.min]"
+              :type="showIcon ? 'text' : 'password'"
+              outlined
+            ></v-text-field>
+            <v-btn :disabled="isButtonDisabled" color="green darken-2" outlined @click="registerUser">REGISTER</v-btn>
+          </v-form>
+        </v-card>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
@@ -35,7 +34,13 @@ export default {
       surname: '',
       email: '',
       username: '',
-      password: ''
+      password: '',
+      showIcon: false,
+      rules: {
+        required: value => !!value || 'Required.',
+        email: value => /.+@.+\..+/.test(value) || 'E-mail must be valid',
+        min: v => v.length >= 8 || 'Min 8 characters',
+      },
     };
   },
   methods: {
@@ -45,29 +50,30 @@ export default {
       // Nakon uspješnog slanja forme, navigirajte na početnu stranicu
       this.$router.push({ name: 'home' }); // 'home' je ime rute definirano u Vue Routeru
       this.$router.push({ name: 'login' });
-    }
-  }
+    },
+    registerUser() {
+      // Logika za registraciju korisnika
+    },
+  },
 };
 </script>
 
 <style scoped>
 .register-container {
-  background-color: purple;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   padding: 20px;
-  color: white;
+  color: black;
+  border: 1px solid black; /* Dodan okvir oko cijelog bloka */
 }
 
-h2 {
+.text-h6 {
   text-align: left;
 }
 
-.input-field {
+.v-text-field {
   margin-bottom: 10px;
-}
-
-.input-field input {
-  background-color: white;
-  margin-top: 5px;
-  padding: 5px;
 }
 </style>

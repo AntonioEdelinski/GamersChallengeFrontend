@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Dobrodošli u Gamer's Challenge</h1>
+    <h1>Dobrodošli u Gamers Challenge</h1>
     <p>
       Ovdje možete pronaći najnovije izazove, pratiti svoj napredak i sudjelovati u gaming zajednici.
     </p>
