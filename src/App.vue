@@ -1,55 +1,53 @@
 <template>
   <v-app>
-    <v-app-bar
-      app
-      color="primary"
-      dark
-    >
+    <v-app-bar app color="purple" dark>
       <div class="d-flex align-center">
-        <v-img
-          alt="Vuetify Logo"
-          class="shrink mr-2"
-          contain
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
-          transition="scale-transition"
-          width="40"
-        />
-
-        <v-img
-          alt="Vuetify Name"
-          class="shrink mt-1 hidden-sm-and-down"
-          contain
-          min-width="100"
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
-          width="100"
-        />
+        Gamers Challenge
       </div>
-
       <v-spacer></v-spacer>
-
-      <v-btn
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-        text
-      >
-        <span class="mr-2">Latest Release</span>
-        <v-icon>mdi-open-in-new</v-icon>
-      </v-btn>
+      <v-btn text to="/">HOME</v-btn>
+      <v-btn v-show="!isAuthenticated" text :to="{ name: 'login' }" class="colored-button">Login</v-btn>
+      <v-btn v-show="!isAuthenticated" text :to="{ name: 'register' }" class="colored-button">Register</v-btn>
+      <v-btn v-show="isAuthenticated" @click="signOut" text>Sign Out</v-btn>
     </v-app-bar>
 
     <v-main>
-      <router-view/>
+      <div v-if="selectedSuggestion">
+        <router-view :selectedSuggestion="selectedSuggestion" />
+      </div>
+      <router-view v-else />
     </v-main>
+
   </v-app>
 </template>
 
 <script>
+import Homepage from '@/views/HomeView.vue';
+import Register from '@/views/register.vue';
+import Login from '@/views/login.vue';
 
 export default {
-  name: 'App',
-
-  data: () => ({
-    //
-  }),
+  components: {
+    Homepage,
+    Register,
+    Login
+  },
+  data() {
+    return {
+      isAuthenticated: false,
+      selectedSuggestion: null,
+    };
+  },
+  methods: {
+    signOut() {
+      // Implementacija odjave
+    },
+  },
 };
 </script>
+
+<style scoped>
+body {
+  margin: 0;
+}
+</style>
