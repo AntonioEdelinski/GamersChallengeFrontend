@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"name": "GamersChallengeFrontend",
+			"path": "."
+		},
+		{
+			"name": "Client",
+			"path": "../../../Desktop/Gamers Challenge/Client"
+		}
+	],
+	"settings": {}
+}
