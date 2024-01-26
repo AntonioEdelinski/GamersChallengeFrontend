@@ -45,14 +45,11 @@ export default {
   },
   methods: {
     submitForm() {
-      // Implementirajte logiku za slanje forme
 
-      // Nakon uspješnog slanja forme, navigirajte na početnu stranicu
       this.$router.push({ name: 'home' }); // 'home' je ime rute definirano u Vue Routeru
       this.$router.push({ name: 'login' });
     },
     registerUser() {
-      // Logika za registraciju korisnika
     },
   },
 };
@@ -66,7 +63,7 @@ export default {
   justify-content: center;
   padding: 20px;
   color: black;
-  border: 1px solid black; /* Dodan okvir oko cijelog bloka */
+  border: 1px solid black;
 }
 
 .text-h6 {

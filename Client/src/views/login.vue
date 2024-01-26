@@ -43,5 +43,4 @@ export default {
 </script>
 
 <style>
-/* Možete dodati stilove ako je potrebno */
 </style>
